@@ -1,5 +1,5 @@
 const http = require('http')
-const {addUser,getUsers} = require('./repository')
+const {usersController} = require('./usersController')
 
 const port = 5000
 
@@ -7,7 +7,7 @@ const port = 5000
 let cors = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,PUT,POST,PATCH,DELETE,GET');
     res.setHeader('Access-Control-Allow-Headers', '*');
     if (req.method === 'OPTIONS') {
         res.writeHead(200);
@@ -22,12 +22,7 @@ const server = http.createServer((req, res) => {
 
     switch (req.url) {
         case '/users':
-            if (req.method === "POST") {
-                addUser('Lesha')
-                res.write(JSON.stringify({success: true}))
-            } else {
-                res.write(JSON.stringify(getUsers()))
-            }
+            usersController(req, res)
             break
         case '/lessons' :
             res.write('tasks')
@@ -35,7 +30,6 @@ const server = http.createServer((req, res) => {
         default:
             res.write('PAGE NOT FOUND!!!!')
     }
-    res.end()
 })
 
 server.listen(`${port}`)
