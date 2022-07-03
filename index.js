@@ -3,6 +3,10 @@ const {usersController} = require('./usersController')
 
 const port = 5000
 
+process.on('uncaughtException', function(err) {
+    console.log('Caught exception: ' + err);
+});
+
 
 let cors = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

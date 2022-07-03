@@ -1,32 +1,16 @@
-const fs = require("fs");
 const {v1} = require('uuid');
+const {readJsonFromFile, writeJsonToFile} = require('./fs-utils');
 
 
 const getUsers = () => {
-    return new Promise((resolve, reject) => {
-        fs.readFile("users.json", function (err, buf) {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(JSON.parse(buf.toString()))
-            }
-        })
-    })
+    return readJsonFromFile("users.json")
 }
 
 const addUser = async (name) => {
     let users = await getUsers()
     users.push({id: v1(), name: name, banned: false})
 
-    return new Promise((resolve, reject) => {
-        fs.writeFile("users.json", JSON.stringify(users), (err) => {
-            if (err) {
-                reject(err)
-            } else {
-                resolve()
-            }
-        });
-    })
+    return writeJsonToFile("users.json", users)
 }
 
 const isBanned = (userId) => {
