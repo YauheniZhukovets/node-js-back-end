@@ -1,1 +1,22 @@
-[{"id":1,"name":"Sasha","banned":true},{"id":2,"name":"Artem","banned":false},{"id":"3cee6140-fadb-11ec-badf-05afe52febb9","name":"Lesha","banned":false},{"id":"3d2fd710-fadb-11ec-ada2-4de9f7d2fc59","name":"Lesha","banned":false},{"id":"3d743310-fadb-11ec-83cb-37321fb68abe","name":"Lesha","banned":false},{"id":"3d754480-fadb-11ec-83cb-37321fb68abe","name":"Lesha","banned":false},{"id":"8ef82c50-fae0-11ec-9222-fb0b452e92e0","name":"Lesha","banned":false},{"id":"8df6ba80-fae3-11ec-a198-ddfc9fa67c13","name":"Lesha","banned":false},{"id":"1c11b4e0-fae5-11ec-baa4-573732677dd9","name":"Lesha","banned":false}]
+[
+  {
+    "id": "1",
+    "name": "Sasha",
+    "banned": true
+  },
+  {
+    "id": "2",
+    "name": "Artem",
+    "banned": false
+  },
+  {
+    "id": "56f211a0-fb6b-11ec-a495-c71f9a6d5ab3",
+    "name": "Lesha",
+    "banned": false
+  },
+  {
+    "id": "c70894a0-fb70-11ec-982d-3fe0c96629c4",
+    "name": "Kate",
+    "banned": true
+  }
+]

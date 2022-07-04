@@ -1,39 +1,31 @@
-const http = require('http')
-const {usersController} = require('./usersController')
+const express = require('express')
+const cors = require('cors')
+const users = require('./usersRouters')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
-const port = 5000
+main().catch(err => console.log(err));
 
-process.on('uncaughtException', function(err) {
-    console.log('Caught exception: ' + err);
-});
-
-
-let cors = (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,PUT,POST,PATCH,DELETE,GET');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    if (req.method === 'OPTIONS') {
-        res.writeHead(200);
-        res.end();
-        return true
-    }
-    return false
+async function main() {
+    await mongoose.connect('mongodb://localhost:27017/incubator');
 }
 
-const server = http.createServer((req, res) => {
-    if (cors(req, res)) return
+const port = 5000
+const app = express();
+app.use(cors())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+app.use('/users', users);
 
-    switch (req.url) {
-        case '/users':
-            usersController(req, res)
-            break
-        case '/lessons' :
-            res.write('tasks')
-            break
-        default:
-            res.write('PAGE NOT FOUND!!!!')
-    }
+
+app.get('/tasks', async (req, res) => {
+    res.send('tasks')
+});
+
+app.use((req, res) => {
+    res.send(404);
+});
+
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`)
 })
-
-server.listen(`${port}`)
