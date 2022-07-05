@@ -4,10 +4,12 @@ const users = require('./usersRouters')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+const uri = process.env.MONGODB_URI;
+
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/incubator');
+    await mongoose.connect(uri);
 }
 
 let port = process.env.PORT || 5000
