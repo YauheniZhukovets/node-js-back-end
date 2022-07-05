@@ -4,12 +4,21 @@ const users = require('./usersRouters')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+try {
+    mongoose.connect(
+        process.env.MONGODB_URI,
+        {useNewUrlParser: true, useUnifiedTopology: true},
+        () => console.log(" Mongoose is connected")
+    );
 
-main().catch(err => console.log(err));
+} catch (e) {
+    console.log("could not connect");
+}
 
+/*main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect(process.env.MONGODB_URI);
-}
+}*/
 
 const app = express();
 app.use(cors())
