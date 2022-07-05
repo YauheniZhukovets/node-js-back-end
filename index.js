@@ -4,7 +4,9 @@ const users = require('./usersRouters')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const uri = 'mongodb+srv://Evgeni:nzbcLAw3Uh3R6o1o@cluster0.cd2hkjr.mongodb.net/?retryWrites=true&w=majority'
+//const uri = 'mongodb+srv://Evgeni:nzbcLAw3Uh3R6o1o@cluster0.cd2hkjr.mongodb.net/?retryWrites=true&w=majority'
+const uri = process.env.MONGODB_URI
+
 try {
     mongoose.connect(uri,
         {useNewUrlParser: true, useUnifiedTopology: true},
