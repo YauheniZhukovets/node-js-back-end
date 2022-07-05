@@ -7,7 +7,6 @@ const usersSchema = new mongoose.Schema({
 
 const User = mongoose.model('users', usersSchema);
 
-
 const getUsers = (search) => {
     if (!search) {
         return User.find()
@@ -17,7 +16,7 @@ const getUsers = (search) => {
 }
 
 const getUser = (id) => {
-        return User.find({_id: id})
+    return User.find({_id: id})
 }
 
 const deleteUser = (id) => {
@@ -29,15 +28,14 @@ const addUser = (name, banned) => {
     return user.save();
 }
 
-const isBanned = async (userId) => {
-    let users = await getUsers()
-    users.map(u => u.id === userId ? u.banned = !u.banned : u)
+const updateUser = (userId, name, banned) => {
+    return User.update({_id: userId}, {name: name, banned: banned},)
 }
 
 module.exports = {
     addUser,
     getUsers,
     getUser,
-    isBanned,
+    updateUser,
     deleteUser
 }

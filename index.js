@@ -10,13 +10,12 @@ async function main() {
     await mongoose.connect('mongodb://localhost:27017/incubator');
 }
 
-const port = 5000
+let port = process.env.PORT || 5000
 const app = express();
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use('/users', users);
-
 
 app.get('/tasks', async (req, res) => {
     res.send('tasks')
