@@ -14,6 +14,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "mongodb://localhost/users&& SET PORT=5000 && nodemon --inspect index.js localhost 5000"
+    "start": "SET MONGODB_URI=mongodb://localhost/users&& SET PORT=5000 && nodemon --inspect index.js localhost 5000"
   }
 }
