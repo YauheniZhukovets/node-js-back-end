@@ -22,8 +22,10 @@ async function main() {
 
 const app = express();
 app.use(cors())
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
 app.use('/users', users);
 
 app.get('/tasks', async (req, res) => {
