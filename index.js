@@ -4,11 +4,11 @@ const users = require('./usersRouters')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://Evgeni:nzbcLAw3Uh3R6o1o@cluster0.cd2hkjr.mongodb.net/?retryWrites=true&w=majority'
 try {
     mongoose.connect(uri,
         {useNewUrlParser: true, useUnifiedTopology: true},
-        () => console.log(" Mongoose is connected")
+        () => console.log("Mongoose is connected")
     );
 
 } catch (e) {
