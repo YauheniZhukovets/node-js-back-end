@@ -4,15 +4,13 @@ const users = require('./usersRouters')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const uri = process.env.MONGODB_URI;
 
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect(uri);
+    await mongoose.connect(process.env.MONGODB_URI);
 }
 
-let port = process.env.PORT || 5000
 const app = express();
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -27,6 +25,6 @@ app.use((req, res) => {
     res.send(404);
 });
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
+app.listen(process.env.PORT, () => {
+    console.log(`App listening on port ${process.env.PORT}`)
 })
